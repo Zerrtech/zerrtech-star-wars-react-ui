@@ -1,0 +1,11 @@
+.hero-list-item-root {
+  border: 1px solid black;
+}
+
+.light-side .force-color {
+  background-color: #0000ff;
+}
+
+.dark-side .force-color {
+  background-color: #ff0000;
+}
