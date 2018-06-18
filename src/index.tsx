@@ -1,11 +1,12 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+import "babel-polyfill";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
-);
+import registerServiceWorker from "./registerServiceWorker";
+import "bootstrap/dist/css/bootstrap.css";
+import "./index.css";
+
+import App from "./App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();
