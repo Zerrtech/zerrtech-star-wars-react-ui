@@ -9,7 +9,7 @@ export function* fetchAllHeroes() {
   try {
     yield put(loadStarted());
     const resp = yield fetch(URL, {
-      method: "GET"
+      method: "GET",
     });
     const data = yield resp.json();
     const finalData = data.map(fromServer);

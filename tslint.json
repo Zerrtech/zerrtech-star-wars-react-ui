@@ -5,8 +5,6 @@
   },
   "rules": {
     "ordered-imports": false,
-    "trailing-comma": true,
-    "object-literal-sort-keys": false,
-    "jsx-no-lambda": false
+    "object-literal-sort-keys": false
   }
 }

@@ -6,7 +6,7 @@ export const fromServer = (record: any): IHero => ({
   imageUrl: record.imageUrl,
   power: record.power,
   affiliations: record.affiliations,
-  light: record.light
+  light: record.light,
 });
 
 export { IHero };

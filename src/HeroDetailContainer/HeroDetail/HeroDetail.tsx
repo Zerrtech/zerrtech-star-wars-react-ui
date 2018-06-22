@@ -8,13 +8,13 @@ interface IHeroDetailComponentProps {
 
 export default function HeroDetailComponent({
   hero,
-  onClose = () => null
+  onClose = () => null,
 }: IHeroDetailComponentProps) {
   return (
     <div className="row">
       <div className="col col-12">
         <div className="row">
-          <div className="col col-12 text-right" onClick={e => onClose()}>
+          <div className="col col-12 text-right" onClick={onClose}>
             X
           </div>
         </div>
