@@ -36,7 +36,7 @@ class HeroListContainerComponent extends React.Component<
 }
 
 const mapDispatchToProps = (dispatch: any): IAppProps => ({
-  loadHeroes: () => dispatch(loadHeroes())
+  loadHeroes: () => dispatch(loadHeroes()),
 });
 
 const mapStateToProps = (state: IAppState, ownProps: any): IStateProps => {
@@ -44,11 +44,11 @@ const mapStateToProps = (state: IAppState, ownProps: any): IStateProps => {
     heroes: state.heroes.heroes,
     loading: state.heroes.loading,
     error: state.heroes.error,
-    history: ownProps.history
+    history: ownProps.history,
   };
 };
 
 export default connect<IStateProps, IAppProps, void>(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(HeroListContainerComponent);

@@ -36,7 +36,9 @@
     "@types/react-redux": "^6.0.2",
     "@types/redux-first-router": "^1.10.3",
     "@types/redux-first-router-link": "^1.4.3",
-    "prettier": "^1.13.5",
+    "prettier": "1.13.5",
+    "tslint-config-prettier": "^1.13.0",
+    "tslint-react": "^3.6.0",
     "typescript": "^2.9.2"
   }
 }
