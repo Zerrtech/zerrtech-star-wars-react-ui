@@ -7,7 +7,7 @@ const INITIAL_STATE: IHeroList = {
   error: null
 };
 
-export const heroReducer = (
+export const reducer = (
   state: IHeroList = INITIAL_STATE,
   action: HeroAPIAction
 ): IHeroList => {
