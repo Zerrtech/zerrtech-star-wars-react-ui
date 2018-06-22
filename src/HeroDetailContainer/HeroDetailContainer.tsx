@@ -24,6 +24,11 @@ class HeroDetailContainerComponent extends React.Component<
   IHeroDetailContainerComponentProps,
   {}
 > {
+  public constructor(props: any) {
+    super(props);
+    this.onClose = this.onClose.bind(this);
+  }
+
   public componentDidMount() {
     this.props.loadHeroes();
   }
