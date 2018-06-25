@@ -9,6 +9,7 @@ import sagas from "./sagas";
 import { reducer as pageReducer } from "./page";
 
 import { routesMap } from "./routes";
+import * as queryString from 'query-string';
 
 declare var window: any;
 
@@ -24,7 +25,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const history = createHistory();
 
 // Build the middleware for intercepting and dispatching navigation actions
-const { reducer, middleware, enhancer } = connectRoutes(history, routesMap);
+const { reducer, middleware, enhancer } = connectRoutes(history, routesMap, {
+  querySerializer: queryString,
+});
 
 const reducers = combineReducers({
   ...otherReducers,
