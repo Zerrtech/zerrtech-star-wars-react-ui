@@ -13,9 +13,9 @@
   "rules": {
     "ordered-imports": false,
     "trailing-comma": true,
-    "object-literal-sort-keys": false,
     "jsx-no-lambda": false,
     "no-console": false,
-    "no-string-literal": false
+    "no-string-literal": false,
+    "object-literal-sort-keys": false
   }
 }

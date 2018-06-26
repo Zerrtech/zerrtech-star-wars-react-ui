@@ -18,12 +18,12 @@ interface IStateProps extends IHeroList {
 
 interface IHeroDetailContainerComponentProps
   extends IStateProps,
-    IDispatchProps {}
+  IDispatchProps { }
 
 class HeroDetailContainerComponent extends React.Component<
   IHeroDetailContainerComponentProps,
   {}
-> {
+  > {
   public componentDidMount() {
     this.props.loadHeroes();
   }
@@ -34,15 +34,10 @@ class HeroDetailContainerComponent extends React.Component<
 
   public render() {
     const { heroes, id } = this.props;
-    const matches = heroes.filter(hero => hero.id === id);
+    const matches = heroes.filter((hero) => hero.id === id);
     const matchingHero = matches[0];
     if (matchingHero) {
-      return (
-        <HeroDetailComponent
-          hero={matchingHero}
-          onClose={() => this.onClose()}
-        />
-      );
+      return <HeroDetailComponent hero={matchingHero} onClose={() => this.onClose()} />;
     } else {
       return <div>Loading...</div>;
     }
@@ -51,7 +46,7 @@ class HeroDetailContainerComponent extends React.Component<
 
 const mapDispatchToProps = (dispatch: any): IDispatchProps => ({
   loadHeroes: () => dispatch(loadHeroes()),
-  goHeroList: () => dispatch(goHeroList())
+  goHeroList: () => dispatch(goHeroList()),
 });
 
 const mapStateToProps = (state: IAppState, ownProps: any): IStateProps => {
@@ -60,11 +55,11 @@ const mapStateToProps = (state: IAppState, ownProps: any): IStateProps => {
     loading: state.heroes.loading,
     error: state.heroes.error,
     id: state.heroDetail.id,
-    history: ownProps.history
+    history: ownProps.history,
   };
 };
 
 export default connect<IStateProps, IDispatchProps, void>(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(HeroDetailContainerComponent);

@@ -1,9 +1,9 @@
-import { heroReducer } from "./HeroListContainer";
-import { heroDetailReducer } from "./HeroDetailContainer";
-import { authReducer } from './Auth';
+import { reducer as heroes } from "./HeroListContainer";
+import { reducer as heroDetail } from "./HeroDetailContainer";
+import { reducer as auth } from './Auth';
 
 export const reducers = {
-  heroes: heroReducer,
-  heroDetail: heroDetailReducer,
-  auth: authReducer,
+  heroes,
+  heroDetail,
+  auth,
 };

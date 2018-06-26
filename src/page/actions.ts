@@ -7,7 +7,7 @@ export const ACTIONS = {
 export { NOT_FOUND };
 
 export const goHeroList = () => ({
-  type: ACTIONS.HERO_LIST
+  type: ACTIONS.HERO_LIST,
 });
 
 export const goAuth0Callback = () => ({
@@ -17,10 +17,10 @@ export const goAuth0Callback = () => ({
 export const goHeroDetail = (id: number) => {
   return {
     type: ACTIONS.HERO_DETAIL,
-    payload: { id }
+    payload: { id },
   };
 };
 
 export const notFound = () => ({
-  type: NOT_FOUND
+  type: NOT_FOUND,
 });

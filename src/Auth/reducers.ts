@@ -9,7 +9,7 @@ export const INITIAL_STATE: IAuthState = {
   },
 };
 
-export const authReducer = (
+export const reducer = (
   state: IAuthState = INITIAL_STATE,
   action: AuthAPIAction
 ): IAuthState => {

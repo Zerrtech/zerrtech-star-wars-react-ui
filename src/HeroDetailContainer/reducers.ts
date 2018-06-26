@@ -1,7 +1,7 @@
 import { NOT_FOUND } from "redux-first-router";
 import { ACTIONS } from "../page/";
 
-export const heroDetailReducer = (state: any = null, action: any) => {
+export const reducer = (state: any = null, action: any) => {
   switch (action.type) {
     case NOT_FOUND:
       return null;
