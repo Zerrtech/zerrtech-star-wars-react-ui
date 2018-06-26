@@ -1,0 +1,33 @@
+.squad-list-item {
+  border: 3px solid #fff;
+  border-radius: 4px;
+  padding: 10px;
+  text-decoration: none;
+
+  .squad-hero-detail {
+    &:hover {
+      opacity: 0.7;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .squad-remove-button {
+    margin-top: -5px;
+  }
+  &.light-side {
+    border-color: #337ab7;
+    a {
+      color: #337ab7;
+    }
+  }
+
+  &.dark-side {
+    border-color: #d9534f;
+
+    a {
+      color: #d9534f;
+    }
+  }
+}

@@ -1,16 +1,21 @@
 import { HeroAPIAction, ACTIONS } from "./actions";
 import { IHeroList } from "../models";
 
-const INITIAL_STATE: IHeroList = {
+interface IHeroSquadList extends IHeroList {
+  squad: number[];
+}
+
+const INITIAL_STATE: IHeroSquadList = {
   heroes: [],
   loading: false,
   error: null,
+  squad: [],
 };
 
 export const reducer = (
-  state: IHeroList = INITIAL_STATE,
+  state: IHeroSquadList = INITIAL_STATE,
   action: HeroAPIAction,
-): IHeroList => {
+): IHeroSquadList => {
   switch (action.type) {
     case ACTIONS.LOAD_STARTED:
       return {
@@ -33,6 +38,8 @@ export const reducer = (
         loading: false,
         error: action.error,
       };
+    case ACTIONS.UPDATE_HERO:
+      return state;
     default:
       return state;
   }

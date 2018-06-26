@@ -5,8 +5,9 @@ export const ACTIONS = {
 };
 export { NOT_FOUND };
 
-export const goHeroList = () => ({
+export const goHeroList = (idList: number[] = []) => ({
   type: ACTIONS.HERO_LIST,
+  payload: { idList: idList.join("-") },
 });
 
 export const goHeroDetail = (id: number) => {

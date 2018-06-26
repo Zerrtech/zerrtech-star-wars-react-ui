@@ -15,7 +15,17 @@ export interface IHeroList {
   error: any;
 }
 
+export interface ILocation {
+  pathname: string;
+  type: string;
+  payload: any;
+  prev: any;
+}
+
 export interface IAppState {
   heroes: IHeroList;
   heroDetail: IHeroDetail;
+  squadList: number[];
+  page: string;
+  location: ILocation;
 }

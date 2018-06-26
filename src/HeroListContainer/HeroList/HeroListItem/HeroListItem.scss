@@ -1,15 +1,22 @@
 .hero-list-item-root {
-  border: 1px solid black;
-}
+  border: 1px solid #ddd;
+  border-left: 30px solid;
+  border-radius: 4px;
+  color: #428bca;
+  padding: 10px 15px;
+  min-height: 85px;
+  align-items: center;
+  margin-top: 1px;
 
-.light-side .force-color {
-  background-color: #0000ff;
-}
+  &.light-side {
+    border-left-color: #337ab7;
+  }
 
-.dark-side .force-color {
-  background-color: #ff0000;
-}
+  &.dark-side {
+    border-left-color: #d9534f;
+  }
 
-a {
-  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
 }
