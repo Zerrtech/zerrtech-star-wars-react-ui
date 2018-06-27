@@ -3,8 +3,6 @@ import * as React from "react";
 import SquadListItem from "./SquadListItem";
 
 const SquadList = ({ heroes, removeFromSquad }: any) => {
-  console.log(heroes);
-
   if (heroes === undefined) {
     return null;
   }

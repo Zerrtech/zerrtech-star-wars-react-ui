@@ -8,6 +8,11 @@
   align-items: center;
   margin-top: 1px;
 
+  &:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
   &.light-side {
     border-left-color: #337ab7;
   }
