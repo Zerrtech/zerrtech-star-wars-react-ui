@@ -7,6 +7,7 @@ export const INITIAL_STATE: IAuthState = {
     expires_at: localStorage.getItem('expires_at'),
     id_token: localStorage.getItem('id_token'),
   },
+  user: null,
 };
 
 export const reducer = (
@@ -52,8 +53,18 @@ export const reducer = (
           access_token: null,
           expires_at: null,
           id_token: null,
-        }
+        },
+        user: null,
       };
+    }
+    case ACTIONS.SET_USER: {
+      return {
+        ...state,
+        user: action.payload,
+      }
+    }
+    case ACTIONS.INIT: {
+      return state;
     }
     default:
       return state;

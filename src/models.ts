@@ -20,6 +20,7 @@ export interface IAppState {
   heroes: IHeroList;
   heroDetail: IHeroDetail;
   auth: IAuthState,
+  page: string,
 }
 
 export interface IAuth0 {

@@ -6,5 +6,5 @@ export const auth = new WebAuth({
   redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL || '',
   audience: process.env.REACT_APP_AUDIENCE || '',
   responseType: 'token id_token',
-  scope: 'openid'
+  scope: 'openid profile email',
 });

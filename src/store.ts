@@ -10,6 +10,7 @@ import { reducer as pageReducer } from "./page";
 
 import { routesMap } from "./routes";
 import * as queryString from 'query-string';
+import { init } from "./Auth";
 
 declare var window: any;
 
@@ -41,5 +42,7 @@ const store = createStore(
 );
 
 sagaMiddleware.run(rootSaga);
+
+store.dispatch(init());
 
 export default store;

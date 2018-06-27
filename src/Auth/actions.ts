@@ -1,5 +1,6 @@
 import { FluxStandardAction } from "flux-standard-action";
 import { IAuth0 } from "../models";
+import { Auth0UserProfile } from "../../node_modules/@types/auth0-js";
 
 type Payload = any;
 export type AuthAPIAction = FluxStandardAction<Payload, {}>;
@@ -9,6 +10,8 @@ export const ACTIONS = {
   LOGOUT: 'LOGOUT',
   LOGIN_CALLBACK: 'LOGIN_CALLBACK',
   REQUEST_LOGIN_CALLBACK: 'REQUEST_LOGIN_CALLBACK',
+  SET_USER: 'SET_USER',
+  INIT: 'INIT',
 };
 
 /*
@@ -38,6 +41,20 @@ export function loginCallback(callback: IAuth0): AuthAPIAction {
 export function requestLoginCallback(): AuthAPIAction {
   return {
     type: ACTIONS.REQUEST_LOGIN_CALLBACK,
+    payload: undefined,
+    meta: {}
+  };
+}
+export function setUser(user: Auth0UserProfile): AuthAPIAction {
+  return {
+    type: ACTIONS.SET_USER,
+    payload: user,
+    meta: {}
+  };
+}
+export function init(): AuthAPIAction {
+  return {
+    type: ACTIONS.INIT,
     payload: undefined,
     meta: {}
   };
