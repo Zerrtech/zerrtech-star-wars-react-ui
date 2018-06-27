@@ -12,7 +12,8 @@ export interface IHero {
 export interface IHeroList {
   heroes: IHero[];
   loading: boolean;
-  error: any;
+  error: boolean;
+  errorObj?: string;
 }
 
 export interface ILocation {
