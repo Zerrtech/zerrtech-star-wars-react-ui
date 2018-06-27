@@ -6,7 +6,9 @@ import { IAppState } from "../models";
 
 const Layout = (props: any) => (
   <div className="container">
-    <h1>{props.page === "HERO_LIST" ? "List Page" : "Detail View"}</h1>
+    <div className="row title-container">
+      <h1>{props.page === "HERO_LIST" ? "List Page" : "Detail View"}</h1>
+    </div>
     <Switcher />
   </div>
 );

@@ -9,6 +9,7 @@ export interface IHeroListComponentProps {
   forceFilter: string;
   onFilterChange: (val: string) => void;
   addToSquad: (id: number) => void;
+  refresh: () => void;
 }
 
 export default function HeroListComponent({
@@ -16,6 +17,7 @@ export default function HeroListComponent({
   forceFilter,
   onFilterChange,
   addToSquad,
+  refresh,
 }: IHeroListComponentProps) {
   const itemList = heroes.map((hero) => {
     return (
@@ -45,6 +47,9 @@ export default function HeroListComponent({
             <option>Light</option>
             <option>Dark</option>
           </select>
+          <button onClick={refresh} type="button" className="refresh-button">
+            <span className="oi oi-reload" />
+          </button>
         </div>
       </div>
       {itemList}

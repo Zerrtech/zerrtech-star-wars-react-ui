@@ -5,8 +5,9 @@ import "./HeroDetail.css";
 interface IHeroDetailComponentProps {
   hero: IHero;
   onClose: () => void;
-  onPowerChange: (val: string) => void;
-  powerValue: string | undefined;
+  onRefresh: () => void;
+  onPowerChange: (val: number) => void;
+  powerValue: number | undefined;
   powerIsDirty: boolean;
   savePower: () => void;
 }
@@ -14,6 +15,7 @@ interface IHeroDetailComponentProps {
 export default function HeroDetailComponent({
   hero,
   onClose = () => null,
+  onRefresh = () => null,
   onPowerChange,
   powerValue,
   powerIsDirty,
@@ -30,7 +32,15 @@ export default function HeroDetailComponent({
           <div className="col col-12 text-right">
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-secondary refresh-detail-button"
+              aria-label="Refresh"
+              onClick={onRefresh}
+            >
+              <span className="oi oi-reload" />
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary close-detail-button"
               aria-label="Close"
               onClick={onClose}
             >

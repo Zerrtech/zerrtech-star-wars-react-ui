@@ -1,21 +1,14 @@
+import { get } from "lodash";
 import { HeroAPIAction, ACTIONS } from "./actions";
 import { IHeroList } from "../models";
 
-interface IHeroSquadList extends IHeroList {
-  squad: number[];
-}
-
-const INITIAL_STATE: IHeroSquadList = {
+const INITIAL_STATE: IHeroList = {
   heroes: [],
   loading: false,
   error: null,
-  squad: [],
 };
 
-export const reducer = (
-  state: IHeroSquadList = INITIAL_STATE,
-  action: HeroAPIAction,
-): IHeroSquadList => {
+export const reducer = (state = INITIAL_STATE, action: HeroAPIAction) => {
   switch (action.type) {
     case ACTIONS.LOAD_STARTED:
       return {
@@ -39,7 +32,17 @@ export const reducer = (
         error: action.error,
       };
     case ACTIONS.UPDATE_HERO:
-      return state;
+      if (action.payload === undefined) {
+        return state;
+      }
+      const otherHeroes = state.heroes.filter(
+        (hero) => hero.id !== get(action, ["payload", "id"]),
+      );
+
+      return {
+        ...state,
+        heroes: [...otherHeroes, action.payload],
+      };
     default:
       return state;
   }

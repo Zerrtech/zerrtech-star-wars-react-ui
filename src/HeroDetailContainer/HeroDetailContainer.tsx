@@ -1,20 +1,22 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { back } from "redux-first-router";
-import { loadHeroes } from "../HeroListContainer/actions";
+import { loadHeroes, updateHero } from "../HeroListContainer/actions";
 import { IAppState } from "../models";
 import { IHeroList } from "../models";
 import { goHeroList } from "../page";
 import HeroDetailComponent from "./HeroDetail";
 import { ACTIONS } from "../page";
+import { IHero } from "../HeroListContainer/models";
 
 interface IDispatchProps {
   loadHeroes: () => void;
+  updateHero: (hero: IHero) => void;
   goHeroList: () => void;
 }
 
 interface IHeroDetailContainerComponentState {
-  power: string | undefined;
+  power: number | undefined;
 }
 
 interface IStateProps extends IHeroList {
@@ -38,7 +40,9 @@ class HeroDetailContainerComponent extends React.Component<
   }
 
   public componentDidMount() {
-    this.props.loadHeroes();
+    if (this.props.heroes.length === 0) {
+      this.props.loadHeroes();
+    }
   }
 
   public onClose = () => {
@@ -49,29 +53,36 @@ class HeroDetailContainerComponent extends React.Component<
     }
   };
 
-  public onPowerChange = (val: string) => {
+  public onRefresh = () => {
+    this.props.loadHeroes();
+    this.setState({ power: undefined });
+  };
+
+  public onPowerChange = (val: number) => {
     this.setState({ power: val });
   };
 
   public savePower = () => {
-    // TODO: Create action creator / reducer to change hero's power in app state
-    console.log("this should save", this.state.power, "as the new power");
+    const matchingHero = this.getHero();
+    this.props.updateHero({
+      ...matchingHero,
+      power: this.state.power || matchingHero.power,
+    });
   };
 
   public render() {
-    const { heroes, id } = this.props;
-    const matches = heroes.filter((hero) => hero.id === id);
-    const matchingHero = matches[0];
+    const matchingHero = this.getHero();
     if (matchingHero) {
       return (
         <HeroDetailComponent
           hero={matchingHero}
           onClose={this.onClose}
+          onRefresh={this.onRefresh}
           onPowerChange={this.onPowerChange}
-          powerValue={this.state.power || matchingHero.power.toString()}
+          powerValue={this.state.power || matchingHero.power}
           powerIsDirty={
             this.state.power !== undefined &&
-            this.state.power !== matchingHero.power.toString()
+            this.state.power !== matchingHero.power
           }
           savePower={this.savePower}
         />
@@ -80,10 +91,16 @@ class HeroDetailContainerComponent extends React.Component<
       return <div>Loading...</div>;
     }
   }
+  private getHero() {
+    const { heroes, id } = this.props;
+    const matches = heroes.filter((hero) => hero.id === id);
+    return matches[0];
+  }
 }
 
 const mapDispatchToProps = (dispatch: any): IDispatchProps => ({
   loadHeroes: () => dispatch(loadHeroes()),
+  updateHero: (hero: IHero) => dispatch(updateHero(hero)),
   goHeroList: () => dispatch(goHeroList()),
 });
 

@@ -56,7 +56,9 @@ class HeroListContainerComponent extends React.Component<
     };
   }
   public componentDidMount() {
-    this.props.loadHeroes();
+    if (this.props.heroes.length === 0) {
+      this.props.loadHeroes();
+    }
   }
 
   public render() {
@@ -78,8 +80,8 @@ class HeroListContainerComponent extends React.Component<
           forceFilter={this.state.forceFilter}
           onFilterChange={this.onFilterChange}
           addToSquad={this.addToSquad}
+          refresh={this.refresh}
         />
-        <div className="col-1" />
         <SquadListComponent
           heroes={squadHeroesOrderAdded}
           removeFromSquad={this.removeFromSquad}
@@ -97,6 +99,10 @@ class HeroListContainerComponent extends React.Component<
 
   private removeFromSquad = (id: number) => {
     this.props.removedFromSquad(id);
+  };
+
+  private refresh = () => {
+    this.props.loadHeroes();
   };
 }
 const mapDispatchToProps = (dispatch: any): IAppProps => ({

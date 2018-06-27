@@ -13,9 +13,19 @@ const SquadListItem = ({ hero, removeFromSquad }: any) => {
   };
 
   return (
-    <div className={`col-6 text-center ${heroClasses}`}>
+    <div className={`col-5 ml-3 mb-3 text-center ${heroClasses}`}>
       <div className="row">
-        <div className="squad-hero-detail col-10">
+        <div className="squad-remove-button col-12">
+          <button
+            onClick={removeClicked}
+            type="button"
+            className="close"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div className="squad-hero-detail col-12">
           <Link to={goHeroDetail(hero.id)}>
             <div className="row">
               <div className="col-12">
@@ -29,17 +39,6 @@ const SquadListItem = ({ hero, removeFromSquad }: any) => {
               <div className="col-12">{hero.power}</div>
             </div>
           </Link>
-        </div>
-
-        <div className="squad-remove-button col-2">
-          <button
-            onClick={removeClicked}
-            type="button"
-            className="close"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
       </div>
     </div>
