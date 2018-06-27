@@ -6,7 +6,7 @@ import { ACTIONS } from "./page";
 
 const components = {
   [ACTIONS.HERO_LIST]: HeroListContainerComponent,
-  [ACTIONS.HERO_DETAIL]: HeroDetailContainerComponent
+  [ACTIONS.HERO_DETAIL]: HeroDetailContainerComponent,
 };
 
 const Switcher = (props: any) => {
@@ -15,7 +15,7 @@ const Switcher = (props: any) => {
 };
 
 const mapState = (state: any) => ({
-  page: state.page
+  page: state.page,
 });
 
 export default connect(mapState)(Switcher);

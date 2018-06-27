@@ -1,3 +1,4 @@
+import { get } from "lodash";
 import { HeroAPIAction, ACTIONS } from "./actions";
 import { IHeroList } from "../models";
 
@@ -7,10 +8,7 @@ const INITIAL_STATE: IHeroList = {
   error: null,
 };
 
-export const reducer = (
-  state: IHeroList = INITIAL_STATE,
-  action: HeroAPIAction,
-): IHeroList => {
+export const reducer = (state = INITIAL_STATE, action: HeroAPIAction) => {
   switch (action.type) {
     case ACTIONS.LOAD_STARTED:
       return {
@@ -32,6 +30,18 @@ export const reducer = (
         heroes: [],
         loading: false,
         error: action.error,
+      };
+    case ACTIONS.UPDATE_HERO:
+      if (action.payload === undefined) {
+        return state;
+      }
+      const otherHeroes = state.heroes.filter(
+        (hero) => hero.id !== get(action, ["payload", "id"]),
+      );
+
+      return {
+        ...state,
+        heroes: [...otherHeroes, action.payload],
       };
     default:
       return state;

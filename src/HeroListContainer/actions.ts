@@ -1,14 +1,17 @@
 import { FluxStandardAction } from "flux-standard-action";
 import { IHero } from "./models";
 
-type Payload = IHero[];
-export type HeroAPIAction = FluxStandardAction<Payload, {}>;
+type ListPayload = IHero[];
+type UpdatePayload = IHero;
+export type HeroAPIAction = FluxStandardAction<ListPayload, {}>;
+export type HeroUpdateAction = FluxStandardAction<UpdatePayload, {}>;
 
 export const ACTIONS = {
   LOAD_HEROES: "LOAD_HEROES",
   LOAD_STARTED: "LOAD_STARTED",
   LOAD_SUCCEEDED: "LOAD_SUCCEEDED",
   LOAD_FAILED: "LOAD_FAILED",
+  UPDATE_HERO: "UPDATE_HERO",
 };
 
 /*
@@ -30,7 +33,7 @@ export function loadStarted(): HeroAPIAction {
   };
 }
 
-export function loadSucceeded(payload: Payload): HeroAPIAction {
+export function loadSucceeded(payload: ListPayload): HeroAPIAction {
   return {
     type: ACTIONS.LOAD_SUCCEEDED,
     payload,
@@ -43,6 +46,14 @@ export function loadFailed(error: any): HeroAPIAction {
     type: ACTIONS.LOAD_FAILED,
     payload: [],
     error,
+    meta: {},
+  };
+}
+
+export function updateHero(payload: UpdatePayload): HeroUpdateAction {
+  return {
+    type: ACTIONS.UPDATE_HERO,
+    payload,
     meta: {},
   };
 }
