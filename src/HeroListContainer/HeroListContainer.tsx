@@ -4,9 +4,12 @@ import { loadHeroes } from "./actions";
 import { IHero, IHeroList } from "../models";
 import { IAppState } from "../models";
 import HeroListComponent from "./HeroList";
-import SquadListComponent from "./SquadList";
 import { goHeroList } from "../page";
-import { addedToSquad, removedFromSquad } from "./SquadList";
+import SquadListComponent, {
+  addedToSquad,
+  removedFromSquad,
+} from "./SquadList";
+import Error from "../Error";
 
 const sortHeroesByPower = (heroList: IHero[]) =>
   heroList.sort((a, b) => {
@@ -62,7 +65,10 @@ class HeroListContainerComponent extends React.Component<
   }
 
   public render() {
-    const { heroes, squad } = this.props;
+    const { heroes, squad, errorObj } = this.props;
+    if (errorObj) {
+      return <Error error={errorObj} />;
+    }
     const sortedHeroes = sortHeroesByPower(heroes);
     const squadHeroes = heroes.filter((hero) => squad.includes(hero.id));
     const squadHeroesOrderAdded = squadHeroes.sort(
@@ -117,6 +123,7 @@ const mapStateToProps = (state: IAppState, ownProps: any): IStateProps => {
     heroes: state.heroes.heroes,
     loading: state.heroes.loading,
     error: state.heroes.error,
+    errorObj: state.heroes.errorObj,
     history: ownProps.history,
     squad: state.squadList,
   };

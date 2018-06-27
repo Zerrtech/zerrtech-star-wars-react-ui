@@ -44,8 +44,8 @@ export function loadSucceeded(payload: ListPayload): HeroAPIAction {
 export function loadFailed(error: any): HeroAPIAction {
   return {
     type: ACTIONS.LOAD_FAILED,
-    payload: [],
-    error,
+    payload: error,
+    error: true,
     meta: {},
   };
 }

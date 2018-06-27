@@ -27,7 +27,7 @@ export default function HeroDetailComponent({
 
   return (
     <div className="hero-detail row">
-      <div className="col col-12">
+      <div className="col col-7 ml-auto mr-auto">
         <div className="row">
           <div className="col col-12 text-right">
             <button
@@ -59,7 +59,7 @@ export default function HeroDetailComponent({
               </div>
             </div>
           </div>
-          <div className="col col-6">
+          <div className="col col-6 mt-5">
             <div className="row">
               <div className="col col-12">
                 <label htmlFor="hero-power-input">Power:</label>
