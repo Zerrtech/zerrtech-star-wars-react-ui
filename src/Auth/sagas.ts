@@ -23,7 +23,6 @@ function* loginCallbackSaga() {
 function* initSaga() {
   // check logged in
   const initAuth = yield select(selectAuth);
-  console.log(initAuth);
   const loggedIn = checkLoggedIn(initAuth);
 
   if (loggedIn) {
