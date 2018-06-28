@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Provider } from "react-redux";
 import store from "./store";
-import Switcher from "./Switcher";
+import Layout from "./Layout";
 import "./App.css";
 
 class App extends React.Component {
   public render() {
     return (
       <Provider store={store}>
-        <Switcher />
+        <Layout />
       </Provider>
     );
   }

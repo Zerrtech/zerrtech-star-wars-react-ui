@@ -10,12 +10,14 @@
       "node_modules/**/*.ts"
     ]
   },
+  "defaultSeverity": "warning",
   "rules": {
     "ordered-imports": false,
     "trailing-comma": true,
     "jsx-no-lambda": false,
     "no-console": false,
     "no-string-literal": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "comment-format": false
   }
 }

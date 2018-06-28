@@ -1,0 +1,20 @@
+.hero-list {
+  .force-filter {
+    justify-content: flex-end;
+    margin-bottom: 5px;
+  }
+
+  #force {
+    margin-left: 5px;
+  }
+  .refresh-button {
+    margin-left: 10px;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

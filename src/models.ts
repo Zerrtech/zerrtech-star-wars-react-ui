@@ -13,18 +13,28 @@ export interface IHero {
 export interface IHeroList {
   heroes: IHero[];
   loading: boolean;
-  error: any;
+  error: boolean;
+  errorObj?: string;
+}
+
+export interface ILocation {
+  pathname: string;
+  type: string;
+  payload: any;
+  prev: any;
 }
 
 export interface IAppState {
   heroes: IHeroList;
   heroDetail: IHeroDetail;
-  auth: IAuthState,
-  page: string,
+  auth: IAuthState;
+  page: string;
+  location: ILocation;
+  squadList: number[];
 }
 
 export interface IAuth0 {
-  access_token: string | null,
-  id_token: string | null,
-  expires_at: string | null,
+  access_token: string | null;
+  id_token: string | null;
+  expires_at: string | null;
 }

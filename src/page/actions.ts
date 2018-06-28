@@ -6,8 +6,9 @@ export const ACTIONS = {
 };
 export { NOT_FOUND };
 
-export const goHeroList = () => ({
+export const goHeroList = (idList: number[] = []) => ({
   type: ACTIONS.HERO_LIST,
+  payload: { query: { id: idList } },
 });
 
 export const goAuth0Callback = () => ({
