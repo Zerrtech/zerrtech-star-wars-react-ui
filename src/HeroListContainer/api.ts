@@ -1,15 +1,23 @@
 import { put } from "redux-saga/effects";
-import { fromServer } from "./models";
-import { loadSucceeded, loadFailed, loadStarted } from "./actions";
+import { fromServer, toServer } from "./models";
+import {
+  loadSucceeded,
+  loadFailed,
+  loadStarted,
+  updateHeroStarted,
+  updateHeroSucceeded,
+  updateHeroFailed,
+  HeroUpdateAction,
+} from "./actions";
 import { UnauthorizedError } from "../errors";
 
 // The heroes API we created.
-const URL = "https://angular-1-training-class-api.herokuapp.com/heroes";
+const API_URL = "https://angular-1-training-class-api.herokuapp.com";
 
 export function* fetchAllHeroes() {
   try {
     yield put(loadStarted());
-    const resp = yield fetch(URL, {
+    const resp = yield fetch(`${API_URL}/heroes`, {
       method: "GET",
     });
     const respChecked = yield checkStatus(resp);
@@ -18,6 +26,29 @@ export function* fetchAllHeroes() {
     yield put(loadSucceeded(finalData));
   } catch (e) {
     yield put(loadFailed(e));
+  }
+}
+
+export function* updateHeroOnServer(action: HeroUpdateAction) {
+  try {
+    const hero = action.payload;
+    yield put(updateHeroStarted());
+    const preparedBody = toServer(hero);
+    const resp = yield fetch(`${API_URL}/hero/${hero.id}`, {
+      method: "PUT",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(preparedBody),
+    });
+    const respChecked = yield checkStatus(resp);
+    const data = yield respChecked.json();
+    yield put(updateHeroSucceeded(data));
+  } catch (e) {
+    yield put(updateHeroFailed(e));
   }
 }
 
