@@ -34,6 +34,7 @@ export function* fetchAllHeroes() {
 export function* updateHeroOnServer(action: HeroUpdateAction) {
   try {
     const hero = action.payload;
+    const accessToken = yield select(selectAccessToken);
     yield put(updateHeroStarted());
     const preparedBody = toServer(hero);
     const resp = yield fetch(`${API_URL}/heroes/${hero.id}/`, {
@@ -42,6 +43,7 @@ export function* updateHeroOnServer(action: HeroUpdateAction) {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(preparedBody),
     });
