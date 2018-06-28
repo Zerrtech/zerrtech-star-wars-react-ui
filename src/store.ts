@@ -10,6 +10,7 @@ import sagas from "./sagas";
 import { reducer as pageReducer } from "./page";
 
 import { routesMap } from "./routes";
+import { init } from "./Auth";
 
 declare var window: any;
 
@@ -47,5 +48,7 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 initialDispatch(); // need this in order to capture initial page load action in Sagas
+
+store.dispatch(init());
 
 export default store;

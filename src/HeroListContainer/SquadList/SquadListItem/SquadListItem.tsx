@@ -3,6 +3,7 @@ import Link from "redux-first-router-link";
 import { goHeroDetail } from "../../../page";
 
 import "./SquadListItem.css";
+import { STATIC_URL } from "../../../utils";
 
 const SquadListItem = ({ hero, removeFromSquad }: any) => {
   const heroSideClass = hero.light ? "light-side" : "dark-side";
@@ -29,7 +30,7 @@ const SquadListItem = ({ hero, removeFromSquad }: any) => {
           <Link to={goHeroDetail(hero.id)}>
             <div className="row">
               <div className="col-12">
-                <img height={150} src={hero.imageUrl} />
+                <img height={150} src={STATIC_URL + hero.imageUrl} />
               </div>
             </div>
             <div className="row">

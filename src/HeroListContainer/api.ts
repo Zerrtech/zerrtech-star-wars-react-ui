@@ -1,4 +1,7 @@
-import { put } from "redux-saga/effects";
+
+import { selectAccessToken, API_URL } from '../utils';
+
+import { put, select } from "redux-saga/effects";
 import { fromServer, toServer } from "./models";
 import {
   loadSucceeded,
@@ -11,14 +14,14 @@ import {
 } from "./actions";
 import { UnauthorizedError } from "../errors";
 
-// The heroes API we created.
-const API_URL = "https://angular-1-training-class-api.herokuapp.com";
-
 export function* fetchAllHeroes() {
   try {
     yield put(loadStarted());
-    const resp = yield fetch(`${API_URL}/heroes`, {
-      method: "GET",
+    const accessToken = yield select(selectAccessToken);
+    const resp = yield fetch(API_URL + '/heroes/', {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      },
     });
     const respChecked = yield checkStatus(resp);
     const data = yield respChecked.json();

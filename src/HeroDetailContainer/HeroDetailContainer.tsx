@@ -26,12 +26,13 @@ interface IStateProps extends IHeroList {
 
 interface IHeroDetailContainerComponentProps
   extends IStateProps,
-    IDispatchProps {}
+  IDispatchProps { }
 
 class HeroDetailContainerComponent extends React.Component<
   IHeroDetailContainerComponentProps,
   IHeroDetailContainerComponentState
-> {
+  > {
+
   public constructor(props: IHeroDetailContainerComponentProps) {
     super(props);
     this.state = {

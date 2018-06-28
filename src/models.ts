@@ -1,4 +1,5 @@
 import { IHeroDetail } from "./HeroDetailContainer/models";
+import { IAuthState } from './Auth';
 
 export interface IHero {
   id: number;
@@ -26,7 +27,14 @@ export interface ILocation {
 export interface IAppState {
   heroes: IHeroList;
   heroDetail: IHeroDetail;
-  squadList: number[];
+  auth: IAuthState;
   page: string;
   location: ILocation;
+  squadList: number[];
+}
+
+export interface IAuth0 {
+  access_token: string | null;
+  id_token: string | null;
+  expires_at: string | null;
 }

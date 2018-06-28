@@ -1,5 +1,7 @@
 import * as React from "react";
 import { IHero } from "../../models";
+import { STATIC_URL } from "../../utils";
+
 import "./HeroDetail.css";
 
 interface IHeroDetailComponentProps {
@@ -55,7 +57,7 @@ export default function HeroDetailComponent({
             </div>
             <div className="row">
               <div className="col col-12">
-                <img src={hero.imageUrl} />
+                <img src={STATIC_URL + hero.imageUrl} />
               </div>
             </div>
           </div>
