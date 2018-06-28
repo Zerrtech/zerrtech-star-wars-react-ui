@@ -1,5 +1,4 @@
-
-import { selectAccessToken, API_URL } from '../utils';
+import { selectAccessToken, API_URL } from "../utils";
 
 import { put, select } from "redux-saga/effects";
 import { fromServer, toServer } from "./models";
@@ -18,9 +17,9 @@ export function* fetchAllHeroes() {
   try {
     yield put(loadStarted());
     const accessToken = yield select(selectAccessToken);
-    const resp = yield fetch(API_URL + '/heroes/', {
+    const resp = yield fetch(API_URL + "/heroes/", {
       headers: {
-        'Authorization': `Bearer ${accessToken}`
+        Authorization: `Bearer ${accessToken}`,
       },
     });
     const respChecked = yield checkStatus(resp);
@@ -37,10 +36,9 @@ export function* updateHeroOnServer(action: HeroUpdateAction) {
     const hero = action.payload;
     yield put(updateHeroStarted());
     const preparedBody = toServer(hero);
-    const resp = yield fetch(`${API_URL}/hero/${hero.id}`, {
+    const resp = yield fetch(`${API_URL}/heroes/${hero.id}/`, {
       method: "PUT",
       mode: "cors",
-      credentials: "include",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
