@@ -1,7 +1,7 @@
-import { FluxStandardAction } from "flux-standard-action";
+import { IFSARequiredPayload } from "../../actions";
 
-export type SquadModifyAction = FluxStandardAction<number, {}>;
-export type SquadLoadAction = FluxStandardAction<number[], {}>;
+export type SquadModifyAction = IFSARequiredPayload<number>;
+export type SquadLoadAction = IFSARequiredPayload<number[]>;
 
 export const ACTIONS = {
   ADDED_TO_SQUAD: "ADDED_TO_SQUAD",
@@ -13,7 +13,6 @@ export function removedFromSquad(id: number): SquadModifyAction {
   return {
     type: ACTIONS.REMOVED_FROM_SQUAD,
     payload: id,
-    meta: {},
   };
 }
 
@@ -21,7 +20,6 @@ export function addedToSquad(id: number): SquadModifyAction {
   return {
     type: ACTIONS.ADDED_TO_SQUAD,
     payload: id,
-    meta: {},
   };
 }
 
@@ -29,6 +27,5 @@ export function newSquadLoaded(idList: number[]): SquadLoadAction {
   return {
     type: ACTIONS.NEW_SQUAD_LOADED,
     payload: idList,
-    meta: {},
   };
 }
