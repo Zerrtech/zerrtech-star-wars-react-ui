@@ -80,7 +80,7 @@ class HeroListContainerComponent extends React.Component<
     );
     const availableHeroes = filterHeroesBySquad(filteredHeroes, squad);
     return (
-      <div className="row">
+      <div className="row mt-3">
         <HeroListComponent
           heroes={availableHeroes}
           forceFilter={this.state.forceFilter}

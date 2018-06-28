@@ -28,28 +28,8 @@ export default function HeroDetailComponent({
   };
 
   return (
-    <div className="hero-detail row">
+    <div className="hero-detail row mt-3">
       <div className="col col-7 ml-auto mr-auto">
-        <div className="row">
-          <div className="col col-12 text-right">
-            <button
-              type="button"
-              className="btn btn-secondary refresh-detail-button"
-              aria-label="Refresh"
-              onClick={onRefresh}
-            >
-              <span className="oi oi-reload" />
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary close-detail-button"
-              aria-label="Close"
-              onClick={onClose}
-            >
-              <span className="oi oi-x" />
-            </button>
-          </div>
-        </div>
         <div className="row">
           <div className="col col-6">
             <div className="row">
@@ -61,7 +41,7 @@ export default function HeroDetailComponent({
               </div>
             </div>
           </div>
-          <div className="col col-6 mt-5">
+          <div className="col col-4 mt-5">
             <div className="row">
               <div className="col col-12">
                 <label htmlFor="hero-power-input">Power:</label>
@@ -96,6 +76,24 @@ export default function HeroDetailComponent({
                 <span>{` ${hero.affiliations.join(", ")}`}</span>
               </div>
             </div>
+          </div>
+          <div className="col col-2 mt-1">
+            <button
+              type="button"
+              className="btn btn-light btn-sm refresh-detail-button"
+              aria-label="Refresh"
+              onClick={onRefresh}
+            >
+              <span className="oi oi-reload" />
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary btn-sm close-detail-button"
+              aria-label="Close"
+              onClick={onClose}
+            >
+              <span className="oi oi-x" />
+            </button>
           </div>
         </div>
       </div>

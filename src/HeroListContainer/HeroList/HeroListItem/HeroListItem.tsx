@@ -30,7 +30,9 @@ export default function HeroListItemComponent({
           </div>
         </div>
       </div>
-      <div className="col-1">&gt;</div>
+      <div className="col-1">
+        <span className="oi oi-chevron-right" />
+      </div>
     </a>
   );
 }
