@@ -37,13 +37,37 @@ export const reducer = (state = INITIAL_STATE, action: HeroAPIAction) => {
       if (action.payload === undefined) {
         return state;
       }
-      const otherHeroes = state.heroes.filter(
+      const unchangedHeroes = state.heroes.filter(
         (hero) => hero.id !== get(action, ["payload", "id"]),
       );
 
       return {
         ...state,
+        heroes: [...unchangedHeroes, action.payload],
+      };
+    case ACTIONS.UPDATE_STARTED:
+      return {
+        ...state,
+        error: false,
+      };
+    case ACTIONS.UPDATE_SUCCEEDED:
+      if (action.payload === undefined) {
+        return state;
+      }
+
+      const otherHeroes = state.heroes.filter(
+        (hero) => hero.id !== get(action, ["payload", "id"]),
+      );
+      return {
+        ...state,
         heroes: [...otherHeroes, action.payload],
+        error: false,
+      };
+    case ACTIONS.UPDATE_FAILED:
+      return {
+        ...state,
+        error: true,
+        errorObj: action.payload,
       };
     default:
       return state;

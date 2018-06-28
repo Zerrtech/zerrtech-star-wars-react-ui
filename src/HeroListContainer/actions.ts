@@ -4,7 +4,10 @@ import { IHero } from "./models";
 type ListPayload = IHero[];
 type UpdatePayload = IHero;
 export type HeroAPIAction = FluxStandardAction<ListPayload, {}>;
-export type HeroUpdateAction = FluxStandardAction<UpdatePayload, {}>;
+export interface IHeroUpdateAction
+  extends FluxStandardAction<UpdatePayload, {}> {
+  payload: UpdatePayload;
+}
 
 export const ACTIONS = {
   LOAD_HEROES: "LOAD_HEROES",
@@ -12,6 +15,9 @@ export const ACTIONS = {
   LOAD_SUCCEEDED: "LOAD_SUCCEEDED",
   LOAD_FAILED: "LOAD_FAILED",
   UPDATE_HERO: "UPDATE_HERO",
+  UPDATE_STARTED: "UPDATE_STARTED",
+  UPDATE_SUCCEEDED: "UPDATE_SUCCEEDED",
+  UPDATE_FAILED: "UPDATE_FAILED",
 };
 
 /*
@@ -50,10 +56,37 @@ export function loadFailed(error: any): HeroAPIAction {
   };
 }
 
-export function updateHero(payload: UpdatePayload): HeroUpdateAction {
+export function updateHero(payload: UpdatePayload): IHeroUpdateAction {
   return {
     type: ACTIONS.UPDATE_HERO,
     payload,
+    meta: {},
+    error: false,
+  };
+}
+
+export function updateHeroStarted(): HeroAPIAction {
+  return {
+    type: ACTIONS.UPDATE_STARTED,
+    meta: {},
+    error: false,
+  };
+}
+
+export function updateHeroSucceeded(payload: UpdatePayload): IHeroUpdateAction {
+  return {
+    type: ACTIONS.UPDATE_SUCCEEDED,
+    payload,
+    meta: {},
+    error: false,
+  };
+}
+
+export function updateHeroFailed(error: any): HeroAPIAction {
+  return {
+    type: ACTIONS.UPDATE_FAILED,
+    payload: error,
+    error: true,
     meta: {},
   };
 }
