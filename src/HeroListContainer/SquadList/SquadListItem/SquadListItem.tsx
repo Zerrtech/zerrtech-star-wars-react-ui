@@ -33,11 +33,15 @@ const SquadListItem = ({ hero, removeFromSquad }: any) => {
                 <img height={150} src={STATIC_URL + hero.imageUrl} />
               </div>
             </div>
-            <div className="row">
-              <div className="col-12">{hero.name}</div>
+            <div className="row mt-2">
+              <div className="col-12">
+                <h5>{hero.name}</h5>
+              </div>
             </div>
             <div className="row">
-              <div className="col-12">{hero.power}</div>
+              <div className="col-12">
+                <div>{hero.power}</div>
+              </div>
             </div>
           </Link>
         </div>

@@ -15,7 +15,7 @@ const SquadList = ({ heroes, removeFromSquad }: any) => {
   ));
 
   return (
-    <div className="squad-list col-5">
+    <div className="squad-list col-6">
       <div className="row">{squadItems}</div>
     </div>
   );
