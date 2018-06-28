@@ -7,7 +7,7 @@ import {
   updateHeroStarted,
   updateHeroSucceeded,
   updateHeroFailed,
-  IHeroUpdateAction,
+  HeroUpdateAction,
 } from "./actions";
 import { UnauthorizedError } from "../errors";
 
@@ -29,7 +29,7 @@ export function* fetchAllHeroes() {
   }
 }
 
-export function* updateHeroOnServer(action: IHeroUpdateAction) {
+export function* updateHeroOnServer(action: HeroUpdateAction) {
   try {
     const hero = action.payload;
     yield put(updateHeroStarted());
