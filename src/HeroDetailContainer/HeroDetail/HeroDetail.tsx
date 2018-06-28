@@ -9,7 +9,7 @@ interface IHeroDetailComponentProps {
   onClose: () => void;
   onRefresh: () => void;
   onPowerChange: (val: number) => void;
-  powerValue: number | undefined;
+  powerValue: number;
   powerIsDirty: boolean;
   savePower: () => void;
 }
@@ -24,7 +24,7 @@ export default function HeroDetailComponent({
   savePower,
 }: IHeroDetailComponentProps) {
   const onPowerInputChange = (evt: any) => {
-    onPowerChange(evt.target.value);
+    onPowerChange(parseInt(evt.target.value, 10));
   };
 
   return (
@@ -70,8 +70,8 @@ export default function HeroDetailComponent({
                   type="number"
                   className="text-right"
                   placeholder="Enter Power"
-                  step={"1000"}
-                  value={(powerValue || "").toString()}
+                  step={1000}
+                  value={powerValue}
                   onChange={onPowerInputChange}
                 />
                 {powerIsDirty && (

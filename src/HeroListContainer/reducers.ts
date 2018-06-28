@@ -6,7 +6,6 @@ const INITIAL_STATE: IHeroList = {
   heroes: [],
   loading: false,
   error: false,
-  errorObj: undefined,
 };
 
 export const reducer = (state = INITIAL_STATE, action: HeroAPIAction) => {
@@ -21,7 +20,7 @@ export const reducer = (state = INITIAL_STATE, action: HeroAPIAction) => {
     case ACTIONS.LOAD_SUCCEEDED:
       return {
         ...state,
-        heroes: action.payload === undefined ? [] : action.payload,
+        heroes: action.payload,
         loading: false,
         error: false,
       };
@@ -30,20 +29,35 @@ export const reducer = (state = INITIAL_STATE, action: HeroAPIAction) => {
         ...state,
         heroes: [],
         loading: false,
-        error: true,
-        errorObj: action.payload,
+        error: action.payload,
       };
     case ACTIONS.UPDATE_HERO:
-      if (action.payload === undefined) {
-        return state;
-      }
-      const otherHeroes = state.heroes.filter(
+      const unchangedHeroes = state.heroes.filter(
         (hero) => hero.id !== get(action, ["payload", "id"]),
       );
 
       return {
         ...state,
+        heroes: [...unchangedHeroes, action.payload],
+      };
+    case ACTIONS.UPDATE_STARTED:
+      return {
+        ...state,
+        error: false,
+      };
+    case ACTIONS.UPDATE_SUCCEEDED:
+      const otherHeroes = state.heroes.filter(
+        (hero) => hero.id !== get(action, ["payload", "id"]),
+      );
+      return {
+        ...state,
         heroes: [...otherHeroes, action.payload],
+        error: false,
+      };
+    case ACTIONS.UPDATE_FAILED:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

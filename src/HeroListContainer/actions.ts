@@ -1,10 +1,11 @@
-import { FluxStandardAction } from "flux-standard-action";
 import { IHero } from "./models";
+import { IFSARequiredPayload, FSANoPayload } from "../actions";
 
 type ListPayload = IHero[];
 type UpdatePayload = IHero;
-export type HeroAPIAction = FluxStandardAction<ListPayload, {}>;
-export type HeroUpdateAction = FluxStandardAction<UpdatePayload, {}>;
+export type HeroAPIAction = IFSARequiredPayload<ListPayload>;
+export type HeroAPIActionNoPayload = FSANoPayload;
+export type HeroUpdateAction = IFSARequiredPayload<UpdatePayload>;
 
 export const ACTIONS = {
   LOAD_HEROES: "LOAD_HEROES",
@@ -12,6 +13,9 @@ export const ACTIONS = {
   LOAD_SUCCEEDED: "LOAD_SUCCEEDED",
   LOAD_FAILED: "LOAD_FAILED",
   UPDATE_HERO: "UPDATE_HERO",
+  UPDATE_STARTED: "UPDATE_STARTED",
+  UPDATE_SUCCEEDED: "UPDATE_SUCCEEDED",
+  UPDATE_FAILED: "UPDATE_FAILED",
 };
 
 /*
@@ -21,15 +25,14 @@ export function loadHeroes(): HeroAPIAction {
   return {
     type: ACTIONS.LOAD_HEROES,
     payload: [],
-    meta: {},
+    error: false,
   };
 }
 
-export function loadStarted(): HeroAPIAction {
+export function loadStarted(): HeroAPIActionNoPayload {
   return {
     type: ACTIONS.LOAD_STARTED,
-    payload: [],
-    meta: {},
+    error: false,
   };
 }
 
@@ -37,7 +40,7 @@ export function loadSucceeded(payload: ListPayload): HeroAPIAction {
   return {
     type: ACTIONS.LOAD_SUCCEEDED,
     payload,
-    meta: {},
+    error: false,
   };
 }
 
@@ -46,7 +49,6 @@ export function loadFailed(error: any): HeroAPIAction {
     type: ACTIONS.LOAD_FAILED,
     payload: error,
     error: true,
-    meta: {},
   };
 }
 
@@ -54,6 +56,29 @@ export function updateHero(payload: UpdatePayload): HeroUpdateAction {
   return {
     type: ACTIONS.UPDATE_HERO,
     payload,
-    meta: {},
+    error: false,
+  };
+}
+
+export function updateHeroStarted(): HeroAPIActionNoPayload {
+  return {
+    type: ACTIONS.UPDATE_STARTED,
+    error: false,
+  };
+}
+
+export function updateHeroSucceeded(payload: UpdatePayload): HeroUpdateAction {
+  return {
+    type: ACTIONS.UPDATE_SUCCEEDED,
+    payload,
+    error: false,
+  };
+}
+
+export function updateHeroFailed(error: any): HeroAPIAction {
+  return {
+    type: ACTIONS.UPDATE_FAILED,
+    payload: error,
+    error: true,
   };
 }
